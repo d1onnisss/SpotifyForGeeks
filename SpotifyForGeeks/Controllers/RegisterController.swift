@@ -1,4 +1,3 @@
-//
 //  RegisterController.swift
 //  SpotifyForGeeks
 //
@@ -6,6 +5,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class RegisterController: UIViewController {
     
@@ -128,7 +128,7 @@ class RegisterController: UIViewController {
         view.setTitle("Create Account", for: .normal)
         view.setTitleColor(.white, for: .normal)
         view.backgroundColor = UIColor(red: 66/255, green: 200/255, blue: 60/255, alpha: 1.0)
-            view.layer.cornerRadius = 30
+        view.layer.cornerRadius = 30
         view.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         view.addTarget(self, action: #selector(createAccBtnTapped), for: .touchUpInside)
         return view
@@ -137,16 +137,20 @@ class RegisterController: UIViewController {
     private lazy var grayLineLeft: UIView = {
         let view = UIView()
         view.backgroundColor = .lightGray
-        view.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        view.widthAnchor.constraint(equalToConstant: 146).isActive = true
+        view.snp.makeConstraints { make in
+            make.height.equalTo(1)
+            make.width.equalTo(146)
+        }
         return view
     }()
     
     private lazy var grayLineRight: UIView = {
         let view = UIView()
         view.backgroundColor = .lightGray
-        view.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        view.widthAnchor.constraint(equalToConstant: 146).isActive = true
+        view.snp.makeConstraints { make in
+            make.height.equalTo(1)
+            make.width.equalTo(146)
+        }
         return view
     }()
     
@@ -216,82 +220,90 @@ class RegisterController: UIViewController {
     
     private func setupConstraints() {
         view.addSubview(leftBtn)
-        leftBtn.translatesAutoresizingMaskIntoConstraints = false
-        leftBtn.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        leftBtn.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 25).isActive = true
-        leftBtn.heightAnchor.constraint(equalToConstant: 36).isActive = true
-        leftBtn.widthAnchor.constraint(equalToConstant: 36).isActive = true
+        leftBtn.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.left.equalToSuperview().offset(25)
+            make.height.width.equalTo(36)
+        }
         
         view.addSubview(spotifyImage)
-        spotifyImage.translatesAutoresizingMaskIntoConstraints = false
-        spotifyImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        spotifyImage.centerYAnchor.constraint(equalTo: leftBtn.centerYAnchor).isActive = true
-        spotifyImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        spotifyImage.heightAnchor.constraint(equalToConstant: 33).isActive = true
-        spotifyImage.widthAnchor.constraint(equalToConstant: 108).isActive = true
+        spotifyImage.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.centerY.equalTo(leftBtn.snp.centerY)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(33)
+            make.width.equalTo(108)
+        }
         
         view.addSubview(registerLabel)
-        registerLabel.translatesAutoresizingMaskIntoConstraints = false
-        registerLabel.topAnchor.constraint(equalTo: spotifyImage.bottomAnchor, constant: 47).isActive = true
-        registerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        registerLabel.snp.makeConstraints { make in
+            make.top.equalTo(spotifyImage.snp.bottom).offset(47)
+            make.centerX.equalToSuperview()
+        }
         
         view.addSubview(subtitleLabel)
-        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        subtitleLabel.topAnchor.constraint(equalTo: registerLabel.bottomAnchor, constant: 20).isActive = true
-        subtitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        subtitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(registerLabel.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
+        }
         
         view.addSubview(fullNameTF)
-        fullNameTF.translatesAutoresizingMaskIntoConstraints = false
-        fullNameTF.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 27).isActive = true
-        fullNameTF.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 25).isActive = true
-        fullNameTF.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -25).isActive = true
-        fullNameTF.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        fullNameTF.widthAnchor.constraint(equalToConstant: 334).isActive = true
+        fullNameTF.snp.makeConstraints { make in
+            make.top.equalTo(subtitleLabel.snp.bottom).offset(27)
+            make.left.equalToSuperview().offset(25)
+            make.right.equalToSuperview().offset(-25)
+            make.height.equalTo(80)
+            make.width.equalTo(334)
+        }
         
         view.addSubview(enterEmailTF)
-        enterEmailTF.translatesAutoresizingMaskIntoConstraints = false
-        enterEmailTF.topAnchor.constraint(equalTo: fullNameTF.bottomAnchor, constant: 16).isActive = true
-        enterEmailTF.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 25).isActive = true
-        enterEmailTF.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -25).isActive = true
-        enterEmailTF.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        enterEmailTF.widthAnchor.constraint(equalToConstant: 334).isActive = true
+        enterEmailTF.snp.makeConstraints { make in
+            make.top.equalTo(fullNameTF.snp.bottom).offset(16)
+            make.left.equalToSuperview().offset(25)
+            make.right.equalToSuperview().offset(-25)
+            make.height.equalTo(80)
+            make.width.equalTo(334)
+        }
         
         view.addSubview(passwordTF)
-        passwordTF.translatesAutoresizingMaskIntoConstraints = false
-        passwordTF.topAnchor.constraint(equalTo: enterEmailTF.bottomAnchor, constant: 16).isActive = true
-        passwordTF.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 25).isActive = true
-        passwordTF.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -25).isActive = true
-        passwordTF.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        passwordTF.widthAnchor.constraint(equalToConstant: 334).isActive = true
+        passwordTF.snp.makeConstraints { make in
+            make.top.equalTo(enterEmailTF.snp.bottom).offset(16)
+            make.left.equalToSuperview().offset(25)
+            make.right.equalToSuperview().offset(-25)
+            make.height.equalTo(80)
+            make.width.equalTo(334)
+        }
         
         view.addSubview(createAccBtn)
-        createAccBtn.translatesAutoresizingMaskIntoConstraints = false
-        createAccBtn.topAnchor.constraint(equalTo: passwordTF.bottomAnchor, constant: 33).isActive = true
-        createAccBtn.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 25).isActive = true
-        createAccBtn.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -25).isActive = true
-        createAccBtn.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        createAccBtn.snp.makeConstraints { make in
+            make.top.equalTo(passwordTF.snp.bottom).offset(33)
+            make.left.equalToSuperview().offset(25)
+            make.right.equalToSuperview().offset(-25)
+            make.height.equalTo(80)
+        }
         
         view.addSubview(horizontalSV)
-        horizontalSV.translatesAutoresizingMaskIntoConstraints = false
-        horizontalSV.topAnchor.constraint(equalTo: createAccBtn.bottomAnchor, constant: 25).isActive = true
-        horizontalSV.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 25).isActive = true
-        horizontalSV.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -25).isActive = true
-        horizontalSV.heightAnchor.constraint(equalToConstant: 15).isActive = true
+        horizontalSV.snp.makeConstraints { make in
+            make.top.equalTo(createAccBtn.snp.bottom).offset(25)
+            make.left.equalToSuperview().offset(25)
+            make.right.equalToSuperview().offset(-25)
+            make.height.equalTo(15)
+        }
         
         horizontalSV.addArrangedSubview(grayLineLeft)
         horizontalSV.addArrangedSubview(orLabel)
         horizontalSV.addArrangedSubview(grayLineRight)
         
         view.addSubview(logoStackView)
-        logoStackView.translatesAutoresizingMaskIntoConstraints = false
-        logoStackView.topAnchor.constraint(equalTo: horizontalSV.bottomAnchor, constant: 20).isActive = true
-        logoStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        appleLogo.centerYAnchor.constraint(equalTo: googleLogo.centerYAnchor).isActive = true
+        logoStackView.snp.makeConstraints { make in
+            make.top.equalTo(horizontalSV.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
+        }
         
         view.addSubview(notAMemberLabel)
-        notAMemberLabel.translatesAutoresizingMaskIntoConstraints = false
-        notAMemberLabel.topAnchor.constraint(equalTo: logoStackView.bottomAnchor, constant: 20).isActive = true
-        notAMemberLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
+        notAMemberLabel.snp.makeConstraints { make in
+            make.top.equalTo(logoStackView.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
+        }
     }
 }

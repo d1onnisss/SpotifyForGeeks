@@ -1,4 +1,3 @@
-//
 //  ChooseModeController.swift
 //  SpotifyForGeeks
 //
@@ -6,6 +5,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ChooseModeController: UIViewController {
 
@@ -80,7 +80,7 @@ class ChooseModeController: UIViewController {
         view.setTitle("Continue", for: .normal)
         view.setTitleColor(.white, for: .normal)
         view.backgroundColor = UIColor(red: 66/255, green: 200/255, blue: 60/255, alpha: 1.0)
-            view.layer.cornerRadius = 30
+        view.layer.cornerRadius = 30
         view.titleLabel?.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         view.addTarget(self, action: #selector(continueBtnTapped), for: .touchUpInside)
         return view
@@ -99,45 +99,52 @@ class ChooseModeController: UIViewController {
     
     private func setupConstraints() {
         view.addSubview(duaLipaImage)
-        duaLipaImage.translatesAutoresizingMaskIntoConstraints = false
-        duaLipaImage.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        duaLipaImage.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        duaLipaImage.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        duaLipaImage.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        duaLipaImage.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         
         view.addSubview(spotifyImage)
-        spotifyImage.translatesAutoresizingMaskIntoConstraints = false
-        spotifyImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        spotifyImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 97).isActive = true
-        spotifyImage.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -97).isActive = true
-        spotifyImage.heightAnchor.constraint(equalToConstant: 59).isActive = true
-        spotifyImage.widthAnchor.constraint(equalToConstant: 196).isActive = true  
+        spotifyImage.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.left.equalToSuperview().offset(97)
+            make.right.equalToSuperview().offset(-97)
+            make.height.equalTo(59)
+            make.width.equalTo(196)
+        }
         
         view.addSubview(chooseModeLabel)
-        chooseModeLabel.translatesAutoresizingMaskIntoConstraints = false
-        chooseModeLabel.topAnchor.constraint(equalTo: spotifyImage.bottomAnchor, constant: 340).isActive = true
-        chooseModeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        chooseModeLabel.snp.makeConstraints { make in
+            make.top.equalTo(spotifyImage.snp.bottom).offset(340)
+            make.centerX.equalToSuperview()
+        }
         
         view.addSubview(horizontalSV)
-        horizontalSV.translatesAutoresizingMaskIntoConstraints = false
-        horizontalSV.topAnchor.constraint(equalTo: chooseModeLabel.bottomAnchor, constant: 10).isActive = true
-        horizontalSV.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        horizontalSV.heightAnchor.constraint(equalToConstant: 150).isActive = true
-        horizontalSV.widthAnchor.constraint(equalToConstant: 235).isActive = true
+        horizontalSV.snp.makeConstraints { make in
+            make.top.equalTo(chooseModeLabel.snp.bottom).offset(10)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(150)
+            make.width.equalTo(235)
+        }
         
         horizontalSV.addArrangedSubview(darkModeButton)
         horizontalSV.addArrangedSubview(lightModeButton)
         
-        darkModeButton.heightAnchor.constraint(equalToConstant: 73).isActive = true
-        darkModeButton.widthAnchor.constraint(equalToConstant: 73).isActive = true
-        lightModeButton.heightAnchor.constraint(equalToConstant: 73).isActive = true
-        lightModeButton.widthAnchor.constraint(equalToConstant: 73).isActive = true
+        darkModeButton.snp.makeConstraints { make in
+            make.height.equalTo(73)
+            make.width.equalTo(73)
+        }
+        
+        lightModeButton.snp.makeConstraints { make in
+            make.height.equalTo(73)
+            make.width.equalTo(73)
+        }
         
         view.addSubview(continueBtn)
-        continueBtn.translatesAutoresizingMaskIntoConstraints = false
-        continueBtn.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
-        continueBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        continueBtn.widthAnchor.constraint(equalToConstant: 329).isActive = true
-        continueBtn.heightAnchor.constraint(equalToConstant: 92).isActive = true
+        continueBtn.snp.makeConstraints { make in
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-10)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(329)
+            make.height.equalTo(92)
+        }
     }
 }

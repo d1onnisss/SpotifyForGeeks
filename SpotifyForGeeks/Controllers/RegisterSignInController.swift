@@ -1,4 +1,3 @@
-//
 //  RegisterSignInController.swift
 //  SpotifyForGeeks
 //
@@ -6,6 +5,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class RegisterSignInController: UIViewController {
 
@@ -55,7 +55,7 @@ class RegisterSignInController: UIViewController {
         view.setTitle("Register", for: .normal)
         view.setTitleColor(.white, for: .normal)
         view.backgroundColor = UIColor(red: 66/255, green: 200/255, blue: 60/255, alpha: 1.0)
-            view.layer.cornerRadius = 30
+        view.layer.cornerRadius = 30
         view.titleLabel?.font = UIFont.systemFont(ofSize: 19, weight: .bold)
         view.addTarget(self, action: #selector(registerBtnTapped), for: .touchUpInside)
         return view
@@ -66,7 +66,7 @@ class RegisterSignInController: UIViewController {
         view.setTitle("Sign In", for: .normal)
         view.setTitleColor(.black, for: .normal)
         view.backgroundColor = .white
-            view.layer.cornerRadius = 30
+        view.layer.cornerRadius = 30
         view.titleLabel?.font = UIFont.systemFont(ofSize: 19, weight: .bold)
         view.addTarget(self, action: #selector(signInBtnTapped), for: .touchUpInside)
         return view
@@ -93,48 +93,54 @@ class RegisterSignInController: UIViewController {
     
     private func setupConstraints() {
         view.addSubview(billieImage)
-        billieImage.translatesAutoresizingMaskIntoConstraints = false
-        billieImage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 150).isActive = true
-        billieImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: -180).isActive = true
+        billieImage.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(150)
+            make.left.equalToSuperview().offset(-180)
+        }
         
         view.addSubview(leftBtn)
-        leftBtn.translatesAutoresizingMaskIntoConstraints = false
-        leftBtn.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        leftBtn.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 25).isActive = true
-        leftBtn.heightAnchor.constraint(equalToConstant: 36).isActive = true
-        leftBtn.widthAnchor.constraint(equalToConstant: 36).isActive = true
+        leftBtn.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.left.equalToSuperview().offset(25)
+            make.height.width.equalTo(36)
+        }
         
         view.addSubview(spotifyImage)
-        spotifyImage.translatesAutoresizingMaskIntoConstraints = false
-        spotifyImage.topAnchor.constraint(equalTo: leftBtn.bottomAnchor, constant: 100).isActive = true
-        spotifyImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        spotifyImage.heightAnchor.constraint(equalToConstant: 71).isActive = true
-        spotifyImage.widthAnchor.constraint(equalToConstant: 235).isActive = true
+        spotifyImage.snp.makeConstraints { make in
+            make.top.equalTo(leftBtn.snp.bottom).offset(100)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(71)
+            make.width.equalTo(235)
+        }
         
         view.addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.topAnchor.constraint(equalTo: spotifyImage.bottomAnchor, constant: 55).isActive = true
-        titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(spotifyImage.snp.bottom).offset(55)
+            make.centerX.equalToSuperview()
+        }
         
         view.addSubview(subtitleLabel)
-        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 25).isActive = true
-        subtitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        subtitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15).isActive = true
-        subtitleLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15).isActive = true
+        subtitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(25)
+            make.centerX.equalToSuperview()
+            make.left.equalToSuperview().offset(15)
+            make.right.equalToSuperview().offset(-15)
+        }
         
         view.addSubview(registerBtn)
-        registerBtn.translatesAutoresizingMaskIntoConstraints = false
-        registerBtn.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 15).isActive = true
-        registerBtn.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 25).isActive = true
-        registerBtn.heightAnchor.constraint(equalToConstant: 73).isActive = true
-        registerBtn.widthAnchor.constraint(equalToConstant: 147).isActive = true
+        registerBtn.snp.makeConstraints { make in
+            make.top.equalTo(subtitleLabel.snp.bottom).offset(15)
+            make.left.equalToSuperview().offset(25)
+            make.height.equalTo(73)
+            make.width.equalTo(147)
+        }
         
         view.addSubview(signInBtn)
-        signInBtn.translatesAutoresizingMaskIntoConstraints = false
-        signInBtn.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 15).isActive = true
-        signInBtn.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -25).isActive = true
-        signInBtn.heightAnchor.constraint(equalToConstant: 73).isActive = true
-        signInBtn.widthAnchor.constraint(equalToConstant: 147).isActive = true
+        signInBtn.snp.makeConstraints { make in
+            make.top.equalTo(subtitleLabel.snp.bottom).offset(15)
+            make.right.equalToSuperview().offset(-25)
+            make.height.equalTo(73)
+            make.width.equalTo(147)
+        }
     }
 }

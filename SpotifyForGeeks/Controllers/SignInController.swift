@@ -1,11 +1,5 @@
-//
-//  SignInController.swift
-//  SpotifyForGeeks
-//
-//  Created by Alexey Lim on 21/7/24.
-//
-
 import UIKit
+import SnapKit
 
 class SignInController: UIViewController {
 
@@ -14,7 +8,7 @@ class SignInController: UIViewController {
         view.setImage(UIImage(named: "leftBtn"), for: .normal)
         view.tintColor = .black
         view.backgroundColor = .lightGray
-        view.layer.cornerRadius = 36/2
+        view.layer.cornerRadius = 36 / 2
         view.addTarget(self, action: #selector(leftBtnTapped), for: .touchUpInside)
         return view
     }()
@@ -57,7 +51,7 @@ class SignInController: UIViewController {
                          NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .bold)]
         )
         
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 26, height: view.frame.height))
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 26, height: 20))
         view.leftView = paddingView
         view.leftViewMode = .always
         
@@ -80,7 +74,7 @@ class SignInController: UIViewController {
                          NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .bold)]
         )
         
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 26, height: view.frame.height))
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 26, height: 20))
         view.leftView = paddingView
         view.leftViewMode = .always
 
@@ -113,7 +107,7 @@ class SignInController: UIViewController {
         view.setTitle("Sign In", for: .normal)
         view.setTitleColor(.white, for: .normal)
         view.backgroundColor = UIColor(red: 66/255, green: 200/255, blue: 60/255, alpha: 1.0)
-            view.layer.cornerRadius = 30
+        view.layer.cornerRadius = 30
         view.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         view.addTarget(self, action: #selector(signInBtnTapped), for: .touchUpInside)
         return view
@@ -122,16 +116,20 @@ class SignInController: UIViewController {
     private lazy var grayLineLeft: UIView = {
         let view = UIView()
         view.backgroundColor = .lightGray
-        view.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        view.widthAnchor.constraint(equalToConstant: 146).isActive = true
+        view.snp.makeConstraints { make in
+            make.height.equalTo(1)
+            make.width.equalTo(146)
+        }
         return view
     }()
     
     private lazy var grayLineRight: UIView = {
         let view = UIView()
         view.backgroundColor = .lightGray
-        view.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        view.widthAnchor.constraint(equalToConstant: 146).isActive = true
+        view.snp.makeConstraints { make in
+            make.height.equalTo(1)
+            make.width.equalTo(146)
+        }
         return view
     }()
     
@@ -200,76 +198,82 @@ class SignInController: UIViewController {
     
     private func setupConstraints() {
         view.addSubview(leftBtn)
-        leftBtn.translatesAutoresizingMaskIntoConstraints = false
-        leftBtn.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        leftBtn.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 25).isActive = true
-        leftBtn.heightAnchor.constraint(equalToConstant: 36).isActive = true
-        leftBtn.widthAnchor.constraint(equalToConstant: 36).isActive = true
+        leftBtn.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+            make.left.equalTo(view.snp.left).offset(25)
+            make.size.equalTo(CGSize(width: 36, height: 36))
+        }
         
         view.addSubview(spotifyImage)
-        spotifyImage.translatesAutoresizingMaskIntoConstraints = false
-        spotifyImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        spotifyImage.centerYAnchor.constraint(equalTo: leftBtn.centerYAnchor).isActive = true
-        spotifyImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        spotifyImage.heightAnchor.constraint(equalToConstant: 33).isActive = true
-        spotifyImage.widthAnchor.constraint(equalToConstant: 108).isActive = true
+        spotifyImage.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+            make.centerX.equalTo(view.snp.centerX)
+            make.size.equalTo(CGSize(width: 108, height: 33))
+            make.bottom.lessThanOrEqualTo(leftBtn.snp.bottom) 
+        }
         
         view.addSubview(registerLabel)
-        registerLabel.translatesAutoresizingMaskIntoConstraints = false
-        registerLabel.topAnchor.constraint(equalTo: spotifyImage.bottomAnchor, constant: 47).isActive = true
-        registerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        registerLabel.snp.makeConstraints { make in
+            make.top.equalTo(spotifyImage.snp.bottom).offset(47)
+            make.centerX.equalTo(view.snp.centerX)
+        }
         
         view.addSubview(subtitleLabel)
-        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        subtitleLabel.topAnchor.constraint(equalTo: registerLabel.bottomAnchor, constant: 20).isActive = true
-        subtitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        subtitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(registerLabel.snp.bottom).offset(20)
+            make.centerX.equalTo(view.snp.centerX)
+        }
         
         view.addSubview(enterEmailTF)
-        enterEmailTF.translatesAutoresizingMaskIntoConstraints = false
-        enterEmailTF.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 39).isActive = true
-        enterEmailTF.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 25).isActive = true
-        enterEmailTF.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -25).isActive = true
-        enterEmailTF.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        enterEmailTF.snp.makeConstraints { make in
+            make.top.equalTo(subtitleLabel.snp.bottom).offset(39)
+            make.left.equalTo(view.snp.left).offset(25)
+            make.right.equalTo(view.snp.right).offset(-25)
+            make.height.equalTo(80)
+        }
         
         view.addSubview(passwordTF)
-        passwordTF.translatesAutoresizingMaskIntoConstraints = false
-        passwordTF.topAnchor.constraint(equalTo: enterEmailTF.bottomAnchor, constant: 16).isActive = true
-        passwordTF.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 25).isActive = true
-        passwordTF.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -25).isActive = true
-        passwordTF.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        passwordTF.snp.makeConstraints { make in
+            make.top.equalTo(enterEmailTF.snp.bottom).offset(16)
+            make.left.equalTo(view.snp.left).offset(25)
+            make.right.equalTo(view.snp.right).offset(-25)
+            make.height.equalTo(80)
+        }
         
         view.addSubview(recoveryPasswordLabel)
-        recoveryPasswordLabel.translatesAutoresizingMaskIntoConstraints = false
-        recoveryPasswordLabel.topAnchor.constraint(equalTo: passwordTF.bottomAnchor, constant: 20).isActive = true
-        recoveryPasswordLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 25).isActive = true
+        recoveryPasswordLabel.snp.makeConstraints { make in
+            make.top.equalTo(passwordTF.snp.bottom).offset(16)
+            make.centerX.equalTo(view.snp.centerX)
+        }
         
         view.addSubview(signInBtn)
-        signInBtn.translatesAutoresizingMaskIntoConstraints = false
-        signInBtn.topAnchor.constraint(equalTo: recoveryPasswordLabel.bottomAnchor, constant: 24).isActive = true
-        signInBtn.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 25).isActive = true
-        signInBtn.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -25).isActive = true
-        signInBtn.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        signInBtn.snp.makeConstraints { make in
+            make.top.equalTo(recoveryPasswordLabel.snp.bottom).offset(29)
+            make.left.equalTo(view.snp.left).offset(25)
+            make.right.equalTo(view.snp.right).offset(-25)
+            make.height.equalTo(55)
+        }
         
         view.addSubview(horizontalSV)
-        horizontalSV.translatesAutoresizingMaskIntoConstraints = false
-        horizontalSV.topAnchor.constraint(equalTo: signInBtn.bottomAnchor, constant: 25).isActive = true
-        horizontalSV.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 25).isActive = true
-        horizontalSV.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -25).isActive = true
-        horizontalSV.heightAnchor.constraint(equalToConstant: 15).isActive = true
+        horizontalSV.snp.makeConstraints { make in
+            make.top.equalTo(signInBtn.snp.bottom).offset(30)
+            make.centerX.equalTo(view.snp.centerX)
+        }
         
         horizontalSV.addArrangedSubview(grayLineLeft)
         horizontalSV.addArrangedSubview(orLabel)
         horizontalSV.addArrangedSubview(grayLineRight)
         
         view.addSubview(logoStackView)
-        logoStackView.translatesAutoresizingMaskIntoConstraints = false
-        logoStackView.topAnchor.constraint(equalTo: horizontalSV.bottomAnchor, constant: 20).isActive = true
-        logoStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        appleLogo.centerYAnchor.constraint(equalTo: googleLogo.centerYAnchor).isActive = true
+        logoStackView.snp.makeConstraints { make in
+            make.top.equalTo(horizontalSV.snp.bottom).offset(20)
+            make.centerX.equalTo(view.snp.centerX)
+        }
         
         view.addSubview(notAMemberLabel)
-        notAMemberLabel.translatesAutoresizingMaskIntoConstraints = false
-        notAMemberLabel.topAnchor.constraint(equalTo: logoStackView.bottomAnchor, constant: 20).isActive = true
-        notAMemberLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        notAMemberLabel.snp.makeConstraints { make in
+            make.top.equalTo(logoStackView.snp.bottom).offset(33)
+            make.centerX.equalTo(view.snp.centerX)
+        }
     }
 }

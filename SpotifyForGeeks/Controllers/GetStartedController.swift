@@ -1,4 +1,3 @@
-//
 //  GetStartedController.swift
 //  SpotifyForGeeks
 //
@@ -6,6 +5,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class GetStartedController: UIViewController {
 
@@ -47,7 +47,7 @@ class GetStartedController: UIViewController {
         view.setTitle("Get Started", for: .normal)
         view.setTitleColor(.white, for: .normal)
         view.backgroundColor = UIColor(red: 66/255, green: 200/255, blue: 60/255, alpha: 1.0)
-            view.layer.cornerRadius = 30
+        view.layer.cornerRadius = 30
         view.titleLabel?.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         view.addTarget(self, action: #selector(getStartedBtnTapped), for: .touchUpInside)
         return view
@@ -65,36 +65,37 @@ class GetStartedController: UIViewController {
     
     private func setupConstraints() {
         view.addSubview(arianaImage)
-        arianaImage.translatesAutoresizingMaskIntoConstraints = false
-        arianaImage.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        arianaImage.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        arianaImage.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        arianaImage.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        arianaImage.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         
         view.addSubview(spotifyImage)
-        spotifyImage.translatesAutoresizingMaskIntoConstraints = false
-        spotifyImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        spotifyImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 97).isActive = true
-        spotifyImage.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -97).isActive = true
-        spotifyImage.heightAnchor.constraint(equalToConstant: 59).isActive = true
-        spotifyImage.widthAnchor.constraint(equalToConstant: 196).isActive = true
+        spotifyImage.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(59)
+            make.width.equalTo(196)
+        }
         
         view.addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.topAnchor.constraint(equalTo: spotifyImage.bottomAnchor, constant: 300).isActive = true
-        titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(spotifyImage.snp.bottom).offset(300)
+            make.centerX.equalToSuperview()
+        }
         
         view.addSubview(subtitleLabel)
-        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10).isActive = true
-        subtitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 47).isActive = true
-        subtitleLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -47).isActive = true
+        subtitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(10)
+            make.left.equalToSuperview().offset(47)
+            make.right.equalToSuperview().offset(-47)
+        }
         
         view.addSubview(getStartedBtn)
-        getStartedBtn.translatesAutoresizingMaskIntoConstraints = false
-        getStartedBtn.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
-        getStartedBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        getStartedBtn.widthAnchor.constraint(equalToConstant: 329).isActive = true
-        getStartedBtn.heightAnchor.constraint(equalToConstant: 92).isActive = true
+        getStartedBtn.snp.makeConstraints { make in
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-10)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(329)
+            make.height.equalTo(92)
+        }
     }
 }

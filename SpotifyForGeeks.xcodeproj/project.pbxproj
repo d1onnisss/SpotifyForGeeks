@@ -17,6 +17,14 @@
 		1846D6202C4C35FB0086D35F /* RegisterSignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1846D61F2C4C35FB0086D35F /* RegisterSignInController.swift */; };
 		1846D6222C4C49DB0086D35F /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1846D6212C4C49DB0086D35F /* RegisterController.swift */; };
 		1846D6242C4D00DD0086D35F /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1846D6232C4D00DD0086D35F /* SignInController.swift */; };
+		1846D6272C4E99630086D35F /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1846D6262C4E99630086D35F /* NetworkService.swift */; };
+		1846D62A2C4E9B220086D35F /* TokenResponce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1846D6292C4E9B220086D35F /* TokenResponce.swift */; };
+		1846D62D2C4E9EE60086D35F /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1846D62C2C4E9EE60086D35F /* KeychainService.swift */; };
+		1846D6312C4EA1A40086D35F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1846D6302C4EA1A40086D35F /* SnapKit */; };
+		185284CF2C518E26007EECFE /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 185284CE2C518E26007EECFE /* KeychainSwift */; };
+		185284D22C518E65007EECFE /* IGListDiffKit in Frameworks */ = {isa = PBXBuildFile; productRef = 185284D12C518E65007EECFE /* IGListDiffKit */; };
+		185284D42C518E65007EECFE /* IGListKit in Frameworks */ = {isa = PBXBuildFile; productRef = 185284D32C518E65007EECFE /* IGListKit */; };
+		185284D62C518E65007EECFE /* IGListSwiftKit in Frameworks */ = {isa = PBXBuildFile; productRef = 185284D52C518E65007EECFE /* IGListSwiftKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +40,9 @@
 		1846D61F2C4C35FB0086D35F /* RegisterSignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterSignInController.swift; sourceTree = "<group>"; };
 		1846D6212C4C49DB0086D35F /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		1846D6232C4D00DD0086D35F /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
+		1846D6262C4E99630086D35F /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		1846D6292C4E9B220086D35F /* TokenResponce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResponce.swift; sourceTree = "<group>"; };
+		1846D62C2C4E9EE60086D35F /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +50,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				185284CF2C518E26007EECFE /* KeychainSwift in Frameworks */,
+				185284D42C518E65007EECFE /* IGListKit in Frameworks */,
+				185284D22C518E65007EECFE /* IGListDiffKit in Frameworks */,
+				185284D62C518E65007EECFE /* IGListSwiftKit in Frameworks */,
+				1846D6312C4EA1A40086D35F /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +80,8 @@
 		1846D6032C4957370086D35F /* SpotifyForGeeks */ = {
 			isa = PBXGroup;
 			children = (
+				1846D62B2C4E9ECB0086D35F /* Local */,
+				1846D6252C4E99450086D35F /* Network */,
 				1846D6182C4BF5390086D35F /* AppDelegate */,
 				1846D61A2C4BF55C0086D35F /* Controllers */,
 				1846D6192C4BF5490086D35F /* Resources */,
@@ -103,6 +121,39 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		1846D6252C4E99450086D35F /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				1846D6282C4E9B110086D35F /* DTOs */,
+				1846D6262C4E99630086D35F /* NetworkService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		1846D6282C4E9B110086D35F /* DTOs */ = {
+			isa = PBXGroup;
+			children = (
+				1846D6292C4E9B220086D35F /* TokenResponce.swift */,
+			);
+			path = DTOs;
+			sourceTree = "<group>";
+		};
+		1846D62B2C4E9ECB0086D35F /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				1846D62E2C4E9F090086D35F /* Keychain */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		1846D62E2C4E9F090086D35F /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				1846D62C2C4E9EE60086D35F /* KeychainService.swift */,
+			);
+			path = Keychain;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -119,6 +170,13 @@
 			dependencies = (
 			);
 			name = SpotifyForGeeks;
+			packageProductDependencies = (
+				1846D6302C4EA1A40086D35F /* SnapKit */,
+				185284CE2C518E26007EECFE /* KeychainSwift */,
+				185284D12C518E65007EECFE /* IGListDiffKit */,
+				185284D32C518E65007EECFE /* IGListKit */,
+				185284D52C518E65007EECFE /* IGListSwiftKit */,
+			);
 			productName = SpotifyForGeeks;
 			productReference = 1846D6012C4957370086D35F /* SpotifyForGeeks.app */;
 			productType = "com.apple.product-type.application";
@@ -147,6 +205,11 @@
 				Base,
 			);
 			mainGroup = 1846D5F82C4957370086D35F;
+			packageReferences = (
+				1846D62F2C4EA1A40086D35F /* XCRemoteSwiftPackageReference "SnapKit" */,
+				185284CD2C518E26007EECFE /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				185284D02C518E65007EECFE /* XCRemoteSwiftPackageReference "IGListKit" */,
+			);
 			productRefGroup = 1846D6022C4957370086D35F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -173,10 +236,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1846D62A2C4E9B220086D35F /* TokenResponce.swift in Sources */,
 				1846D61C2C4C1EBA0086D35F /* GetStartedController.swift in Sources */,
 				1846D6092C4957370086D35F /* ViewController.swift in Sources */,
 				1846D61E2C4C26890086D35F /* ChooseModeController.swift in Sources */,
 				1846D6222C4C49DB0086D35F /* RegisterController.swift in Sources */,
+				1846D62D2C4E9EE60086D35F /* KeychainService.swift in Sources */,
+				1846D6272C4E99630086D35F /* NetworkService.swift in Sources */,
 				1846D6052C4957370086D35F /* AppDelegate.swift in Sources */,
 				1846D6242C4D00DD0086D35F /* SignInController.swift in Sources */,
 				1846D6202C4C35FB0086D35F /* RegisterSignInController.swift in Sources */,
@@ -391,6 +457,61 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1846D62F2C4EA1A40086D35F /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		185284CD2C518E26007EECFE /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 24.0.0;
+			};
+		};
+		185284D02C518E65007EECFE /* XCRemoteSwiftPackageReference "IGListKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Instagram/IGListKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1846D6302C4EA1A40086D35F /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1846D62F2C4EA1A40086D35F /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		185284CE2C518E26007EECFE /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 185284CD2C518E26007EECFE /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
+		};
+		185284D12C518E65007EECFE /* IGListDiffKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 185284D02C518E65007EECFE /* XCRemoteSwiftPackageReference "IGListKit" */;
+			productName = IGListDiffKit;
+		};
+		185284D32C518E65007EECFE /* IGListKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 185284D02C518E65007EECFE /* XCRemoteSwiftPackageReference "IGListKit" */;
+			productName = IGListKit;
+		};
+		185284D52C518E65007EECFE /* IGListSwiftKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 185284D02C518E65007EECFE /* XCRemoteSwiftPackageReference "IGListKit" */;
+			productName = IGListSwiftKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1846D5F92C4957370086D35F /* Project object */;
 }
